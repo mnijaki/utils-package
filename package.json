@@ -1,0 +1,13 @@
+{
+  "name": "com.mareknijaki.utils-package",
+  "version": "1.0.0",
+  "displayName": "Marek Nijaki - Utils",
+  "description": "Utilities commonly used in Unity projects",
+  "unity": "2019.4",
+  "author": 
+  {
+    "name": "Marek Nijaki",
+    "email": "mnijaki@gmail.com",
+    "url": "https://github.com/mnijaki"
+  }
+}
