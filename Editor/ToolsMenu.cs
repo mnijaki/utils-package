@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace MarekNijaki.Utils
+namespace MarekNijaki.Utils.Editor
 {
     public static class Tools
     {
