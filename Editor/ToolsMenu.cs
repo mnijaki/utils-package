@@ -1,60 +1,48 @@
-using System.IO;
 using UnityEditor;
-using UnityEngine;
 
 namespace MarekNijaki.Utils.Editor
 {
-    public static class Tools
-    {
-        private static string directoryPathToCurrentlySelectedFile;
-        
-        [MenuItem("Tools/Setup/Create default folders")]
-        public static void CreateDefaultFolders()
-        {
-            DirUndo.PrepareForRecording();
-            
-            GetDirectoryPathToCurrentlySelectedFile();
-            CreateFolders(string.Empty, "Art", "Audio", "Data", "Prefabs", "Scripts");
-            CreateFolders("Scripts", "Runtime", "Editor");
-            CreateFolders("Audio", "AudioSFX", "Dialogues", "Music");
-            CreateFolders("Art", "Materials", "Models", "Sprites", "Textures");
-            
-            DirUndo.FinishRecording();
-            
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-        
-        private static void CreateFolders(string rootFolder, params string[] foldersToCreate)
-        {
-            if(foldersToCreate == null || foldersToCreate.Length < 1)
-            {
-                return;
-            }
-            
-            string path = Path.Combine(directoryPathToCurrentlySelectedFile, rootFolder);
-            foreach(string folderName in foldersToCreate)
-            {
-                Directory.CreateDirectory(Path.Combine(path, folderName));
-                DirUndo.Record(Path.Combine(path, folderName));
-            }
-        }
+	public static class Tools
+	{
+		[MenuItem("Tools/Setup/Create default folders")]
+		public static void CreateDefaultFolders()
+		{
+			DirUndo.PrepareForRecording();
 
-        private static void GetDirectoryPathToCurrentlySelectedFile()
-        {
-            directoryPathToCurrentlySelectedFile = "Assets";
-            Object[] selectedObjects = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
-            foreach(Object selectedObject in selectedObjects)
-            {
-                string path = AssetDatabase.GetAssetPath(selectedObject);
-                if(string.IsNullOrEmpty(path))
-                {
-                    continue;
-                }
-                
-                directoryPathToCurrentlySelectedFile = File.Exists(path) ? Path.GetDirectoryName(path) : path;
-                break;
-            }
-        }
-    }
+			Folders.SetRootFolderAsCurrentSelection();
+			Folders.CreateFolders(string.Empty, "Art", "Audio", "Data", "Prefabs", "Scripts");
+			Folders.CreateFolders("Scripts", "Runtime", "Editor");
+			Folders.CreateFolders("Audio", "AudioSFX", "Dialogues", "Music");
+			Folders.CreateFolders("Art", "Materials", "Models", "Sprites", "Textures");
+
+			DirUndo.FinishRecording();
+
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
+		}
+
+		[MenuItem("Tools/Setup/Packages/Load URP 3D manifest template file from Gist")]
+		public static async void SetDefaultManifest()
+		{
+			await Packages.ReplaceDefaultManifestWithTemplateFromGist("58db83bc2ffeece1639ad1d38f25d6eb");
+		}
+		
+		[MenuItem("Tools/Setup/Packages/Install Cinemachine")]
+		public static void InstallCinemachine()
+		{
+			Packages.InstallUnityPackage("cinemachine");
+		}
+
+		[MenuItem("Tools/Setup/Packages/Install New Input System")]
+		public static void InstallNewInputSystem()
+		{
+			Packages.InstallUnityPackage("inputsystem");
+		}
+		
+		[MenuItem("Tools/Setup/Packages/Install Post Processing")]
+		public static void InstallPostProcessing()
+		{
+			Packages.InstallUnityPackage("postprocessing");
+		}
+	}
 }
