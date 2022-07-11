@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace MarekNijaki.Utils.Editor
+namespace MarekNijaki.Utils.PackageSystem.Editor
 {
 	public static class Packages
 	{

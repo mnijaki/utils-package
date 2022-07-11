@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace MarekNijaki.Utils.Editor
+namespace MarekNijaki.Utils.DirectorySystem.Editor
 {
 	public static class Folders
 	{

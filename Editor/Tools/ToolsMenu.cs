@@ -1,6 +1,8 @@
+using MarekNijaki.Utils.DirectorySystem.Editor;
+using MarekNijaki.Utils.PackageSystem.Editor;
 using UnityEditor;
 
-namespace MarekNijaki.Utils.Editor
+namespace MarekNijaki.Utils.Tools.Editor
 {
 	public static class Tools
 	{

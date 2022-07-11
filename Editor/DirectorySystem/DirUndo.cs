@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace MarekNijaki.Utils.Editor
+namespace MarekNijaki.Utils.DirectorySystem.Editor
 {
     public static class DirUndo
     {
